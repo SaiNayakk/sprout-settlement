@@ -14,7 +14,7 @@
   <!-- Released as git tags vX.Y.Z; hosts build a release from its tag (sprout-platform ADR-011). -->
   <groupId>com.github.SaiNayakk</groupId>
   <artifactId>sprout-settlement</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.1</version>
   <name>sprout-settlement</name>
   <description>Sprout's settlement back office: checks clearing obligations against the books, moves the money, settles clients T+1.</description>
 
