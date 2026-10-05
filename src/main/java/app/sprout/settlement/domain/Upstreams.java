@@ -49,8 +49,10 @@ public class Upstreams {
     private final SettlementProperties props;
     private final ObjectMapper json;
     private final HttpClient http = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(1)).build();
+    private final Onward onward;
 
-    public Upstreams(SettlementProperties props, ObjectMapper json) {
+    public Upstreams(SettlementProperties props, ObjectMapper json, Onward onward) {
+        this.onward = onward;
         this.props = props;
         this.json = json;
     }
@@ -118,6 +120,7 @@ public class Upstreams {
     }
 
     private Reply send(String what, HttpRequest.Builder req) {
+        onward.headers(req);
         try {
             HttpResponse<String> res = http.sendAsync(req.timeout(DEADLINE).build(), HttpResponse.BodyHandlers.ofString())
                     .get(DEADLINE.toMillis(), TimeUnit.MILLISECONDS);
